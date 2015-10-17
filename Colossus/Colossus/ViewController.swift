@@ -11,16 +11,25 @@ import UIKit
 
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        SparkCloud.sharedInstance().loginWithUser("baskint@gmail.com", password: "password") { (error:NSError!) -> Void in
-            if let e=error {
+        
+    }
+    
+    @IBAction func login(sender: UIButton) {
+        let username = self.usernameField.text
+        let password = self.passwordField.text
+        SparkCloud.sharedInstance().loginWithUser(username, password: password) { (error:NSError!) -> Void in
+            if error != nil {
                 print("Wrong credentials or no internet connectivity, please try again")
             }
             else {
-                print("Logged in")
+                print("User \(username) is Logged in!")
             }
         }
     }
