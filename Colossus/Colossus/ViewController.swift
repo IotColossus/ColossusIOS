@@ -34,6 +34,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
+        usernameField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        messageField.resignFirstResponder()
         super.touchesBegan(touches, withEvent: event)
     }
     
@@ -50,6 +53,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.listDevices()
             }
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
+        
+    @IBAction func userTappedBackground(sender: AnyObject) {
+        view.endEditing(true)
     }
     
     @IBAction func logout(sender: UIButton) {
