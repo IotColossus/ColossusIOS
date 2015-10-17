@@ -32,14 +32,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
-        view.endEditing(true)
-        usernameField.resignFirstResponder()
-        passwordField.resignFirstResponder()
-        messageField.resignFirstResponder()
-        super.touchesBegan(touches, withEvent: event)
-    }
-    
     @IBAction func login(sender: UIButton) {
         let username = self.usernameField.text
         let password = self.passwordField.text
@@ -53,12 +45,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.listDevices()
             }
         }
+        
+        usernameField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true;
-    }
         
     @IBAction func userTappedBackground(sender: AnyObject) {
         view.endEditing(true)
@@ -112,6 +104,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.messageField.text = nil
             })
         }
+        messageField.resignFirstResponder()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
