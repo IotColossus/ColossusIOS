@@ -32,9 +32,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
     @IBAction func login(sender: UIButton) {
         let username = self.usernameField.text
         let password = self.passwordField.text
+
         SparkCloud.sharedInstance().loginWithUser(username, password: password) { (error:NSError!) -> Void in
             if error != nil {
                 print("Wrong credentials or no internet connectivity, please try again")
