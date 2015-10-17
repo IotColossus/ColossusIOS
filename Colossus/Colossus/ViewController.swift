@@ -18,7 +18,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet
     var tableView: UITableView!
     
+    @IBOutlet weak var messageField: UITextField!
+    
     var devices = [SparkDevice]()
+    
+    var selectedDevice: SparkDevice?
     
     let cellReuseIdentifier = "deviceCell"
 
@@ -66,6 +70,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    @IBAction func sendMessage(sender: UIButton) {
+        
+        if let msg = self.messageField.text {
+            let args = [msg]
+            self.selectedDevice?.callFunction("message", withArguments: args, completion: {(resultCode : NSNumber!, error : NSError!) -> Void in
+                if let error = error {
+                    print(error)
+                } else {
+                    print("Sent!")
+                }
+                
+                self.messageField.text = nil
+            })
+        }
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.devices.count
     }
@@ -79,7 +99,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("You selected cell #\(indexPath.row)!")
+        self.selectedDevice = self.devices[indexPath.row]
     }
 
     func showAlert(title: String, message: String) {
