@@ -48,6 +48,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1B-to-VUf">
                                 <rect key="frame" x="220" y="205" width="48" height="30"/>
                                 <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="ceV-E6-ETS"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kPo-Fy-eyl">
                                 <rect key="frame" x="67" y="253" width="240" height="192"/>

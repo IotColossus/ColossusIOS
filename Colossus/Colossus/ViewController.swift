@@ -45,6 +45,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
+    
+    @IBAction func logout(sender: UIButton) {
+        SparkCloud.sharedInstance().logout()
+        self.usernameField.text = nil
+        self.passwordField.text = nil
+        self.devices = [SparkDevice]()
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.reloadData()
+        })
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
